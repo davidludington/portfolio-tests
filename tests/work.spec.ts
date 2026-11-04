@@ -10,7 +10,6 @@ test.describe('Work Page', () => {
 
   test('displays current role and education', async ({ page }) => {
     await expect(page.getByText('Current Role')).toBeVisible();
-    // const role = page.getByText('QA Automation Engineer').filter({ has: page.locator('.about-details-container') });
     const aboutContainer = page.locator('.about-details-container');
 
     await expect(aboutContainer.filter({ has: page.getByText('QA Automation Engineer') })).toBeVisible();
@@ -23,12 +22,13 @@ test.describe('Work Page', () => {
 
   test('displays projects with GitHub links', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Projects' })).toBeVisible();
+    await expect(page.getByText('bag pattern generator')).toBeVisible();
     await expect(page.getByText('.jpeg - ASCII art')).toBeVisible();
     await expect(page.getByText('Snake Game')).toBeVisible();
     await expect(page.getByText('Schedule Builder')).toBeVisible();
 
     const asciiLink = page.getByRole('link', { name: 'Github' }).first();
-    await expect(asciiLink).toHaveAttribute('href', 'https://github.com/davidludington/image_to_ascii');
+    await expect(asciiLink).toHaveAttribute('href', 'https://github.com/davidludington/bag-pattern-generator');
   });
 
   test('displays skills and frameworks', async ({ page }) => {
